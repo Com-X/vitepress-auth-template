@@ -14,5 +14,5 @@ A template repository including vitepress and simple auth0 authentication. Can b
 
 1. Remember to include your **Allowed Callback URLs** as well as **Allowed Web Origins** in the auth0 project.
    1. For development environments: *.localhost:port
-   2. For production environments: 
+   2. For production environments: https://*.fancy-pagename.com
 
