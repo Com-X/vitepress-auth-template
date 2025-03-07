@@ -1,3 +1,7 @@
+---
+protected: true # TODO: implement Auth0 Authentication. If the User is not authenticated use the auth0 client flow
+---
+
 # Markdown Extension Examples
 
 This page demonstrates some of the built-in markdown extensions provided by VitePress.
