@@ -1,18 +1,19 @@
 {
   "name": "vitepress-auth-template",
   "version": "1.0.0",
-  "description": "Vitepress template to include simple authentication realised with auth0",
+  "description": "",
   "main": "index.js",
-  "repository": "https://github.com/Com-X/vitepress-auth-template.git",
-  "author": "Nils J. <nils.jorek@gmx.de>",
-  "license": "MIT",
   "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "serve": "vitepress serve docs"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
   },
-  "devDependencies": {
-    "@auth0/auth0-spa-js": "^1.18.0",
-    "vitepress": "^0.20.0"
-  }
+  "dependencies": {
+    "vitepress": "1.6.3",
+    "@auth0/auth0-spa-js": "1.20.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

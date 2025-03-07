@@ -1,1 +1,11 @@
+# Dependency directories
 node_modules
+
+# Environment variables
+.env
+
+# Build files
+dist
+
+# Vitepress Cache
+.vitepress/cache/
