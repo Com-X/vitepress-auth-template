@@ -3,9 +3,8 @@
 layout: home
 
 hero:
-  name: "Auth0 Template"
-  text: "Auth0 Vitepress Template"
-  tagline: My great project tagline
+  name: "Auth0 Vitepress Template"
+  tagline: Authenticated Docs in 5 Minutes
   actions:
     - theme: brand
       text: Protected Markdown Examples
@@ -15,11 +14,10 @@ hero:
       link: /api-examples
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
----
+  - title: Secure Access
+    details: Ensure that only authorized users can access your documentation with robust authentication mechanisms.
+  - title: Easy Integration
+    details: Seamlessly integrate Auth0 with your Vitepress site using simple configuration and setup.
+  - title: Customizable Authentication
+    details: Tailor the authentication process to fit your needs with customizable login pages and user management.
 
