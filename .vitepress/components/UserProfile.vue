@@ -1,11 +1,9 @@
 <template>
   <div v-if="isAuthenticated && userData" class="user-profile">
-    <div class="user-info">
+    <div class="user-avatar" :title="userData.name || userData.email">
       <img v-if="userData.picture" :src="userData.picture" alt="Profile" class="avatar" />
       <div v-else class="avatar-placeholder">{{ userInitials }}</div>
-      <span class="user-name">{{ userData.name || userData.email }}</span>
     </div>
-    <button class="logout-button" @click="handleLogout">Log Out</button>
   </div>
 </template>
 
@@ -13,7 +11,7 @@
 import { useAuth } from '../auth/auth0Service';
 import { computed } from 'vue';
 
-const { user, isAuthenticated, logout } = useAuth();
+const { user, isAuthenticated } = useAuth();
 
 const userData = computed(() => user.value);
 
@@ -28,37 +26,36 @@ const userInitials = computed(() => {
     .toUpperCase()
     .substring(0, 2);
 });
-
-const handleLogout = () => {
-  logout();
-};
 </script>
 
 <style>
 .user-profile {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 0.5rem;
-  margin-right: 1rem;
+  padding: 0.25rem;
+  margin: 0 0.75rem 0 0.5rem;
 }
 
-.user-info {
+.user-avatar {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .avatar {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid var(--vp-c-brand);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .avatar-placeholder {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background-color: var(--vp-c-brand);
   color: white;
@@ -67,34 +64,22 @@ const handleLogout = () => {
   justify-content: center;
   font-size: 14px;
   font-weight: bold;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease;
 }
 
-.user-name {
-  font-size: 0.9rem;
-  max-width: 150px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.user-avatar:hover .avatar,
+.user-avatar:hover .avatar-placeholder {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.logout-button {
-  padding: 0.3rem 0.8rem;
-  font-size: 0.85rem;
-  background-color: var(--vp-c-gray-light-3);
-  color: var(--vp-c-text-1);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+.dark .avatar {
+  border-color: var(--vp-c-brand-lighter);
 }
 
-.logout-button:hover {
-  background-color: var(--vp-c-gray-light-4);
-}
-
-@media (max-width: 768px) {
-  .user-name {
-    display: none;
-  }
+.dark .user-avatar:hover .avatar,
+.dark .user-avatar:hover .avatar-placeholder {
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
 }
 </style>

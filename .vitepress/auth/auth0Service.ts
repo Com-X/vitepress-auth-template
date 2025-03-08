@@ -77,9 +77,7 @@ export async function logout() {
         if (!auth0.value) return;
 
         await auth0.value.logout({
-            logoutParams: {
-                returnTo: window.location.origin
-            }
+            returnTo: window.location.origin,
         });
 
         // Clear user state

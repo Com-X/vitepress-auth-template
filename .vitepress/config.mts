@@ -1,12 +1,11 @@
 import { defineConfig } from 'vitepress'
 import { loadEnv } from 'vite'
 
-// Load environment variables
 const env = loadEnv('', process.cwd(), '')
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Auth0 Template",
+  title: "Auth0 Vitepress Template",
   description: "Auth0 Vitepress Template",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -26,7 +25,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/Com-X/vitepress-auth-template' }
     ]
   },
 

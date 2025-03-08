@@ -11,8 +11,6 @@ export default {
   enhanceApp({ app, router, siteData }) {
     // Initialize auth service for client-side only
     if (typeof window !== 'undefined') {
-      // We'll initialize the authentication when the AuthGuard component mounts
-      // This ensures it runs in the browser context only
       console.log('Auth0 integration ready')
     }
   }

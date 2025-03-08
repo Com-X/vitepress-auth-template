@@ -21,17 +21,14 @@ import { onMounted, computed } from 'vue';
 const { frontmatter } = useData();
 const { initAuth, login, isAuthenticated, loading } = useAuth();
 
-// Check if the current page requires authentication
 const requiresAuth = computed(() => {
   return frontmatter.value.protected === true;
 });
 
-// Handle login
 const handleLogin = () => {
   login();
 };
 
-// Initialize authentication on component mount
 onMounted(async () => {
   await initAuth();
 });

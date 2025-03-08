@@ -1,33 +1,34 @@
 <template>
   <button 
-    v-if="!isAuthenticated && !loading" 
-    class="login-btn" 
-    @click="handleLogin"
-    title="Log in to access protected content"
+    v-if="isAuthenticated && !loading" 
+    class="logout-btn"
+    title="Log out" 
+    @click="handleLogout"
+    aria-label="Log out"
   >
-    <span class="login-icon">
+    <span class="logout-icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-        <polyline points="10 17 15 12 10 7"></polyline>
-        <line x1="15" y1="12" x2="3" y2="12"></line>
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+        <polyline points="16 17 21 12 16 7"></polyline>
+        <line x1="21" y1="12" x2="9" y2="12"></line>
       </svg>
     </span>
-    <span>Log In</span>
+    <span class="logout-text">Log Out</span>
   </button>
 </template>
 
 <script setup lang="ts">
 import { useAuth } from '../auth/auth0Service';
 
-const { isAuthenticated, loading, login } = useAuth();
+const { isAuthenticated, loading, logout } = useAuth();
 
-const handleLogin = () => {
-  login();
+const handleLogout = () => {
+  logout();
 };
 </script>
 
 <style>
-.login-btn {
+.logout-btn {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -44,29 +45,28 @@ const handleLogin = () => {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.login-btn:hover {
-  background-color: var(--vp-c-brand-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+.logout-btn:hover {
+  background-color: var(--vp-c-bg-soft-up);
+  color: var(--vp-c-brand);
 }
 
-.login-icon {
+.logout-icon {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.dark .login-btn {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.dark .login-btn:hover {
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
-}
-
 @media (max-width: 768px) {
-  .login-btn {
-    padding: 0.5rem 0.75rem;
+  .logout-text {
+    display: none;
   }
+  
+  .logout-btn {
+    padding: 0.5rem;
+  }
+}
+
+.dark .logout-btn {
+  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.05);
 }
 </style>
