@@ -41,6 +41,7 @@ const { frontmatter } = useData()
   display: flex;
   align-items: center;
   margin-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 @media (max-width: 768px) {

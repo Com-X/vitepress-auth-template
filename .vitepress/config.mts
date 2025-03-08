@@ -12,7 +12,8 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Protected', link: '/markdown-examples' }
+      { text: 'Protected', link: '/markdown-examples' },
+      { text: 'Public', link: '/non-protected' }
     ],
 
     sidebar: [
@@ -20,7 +21,8 @@ export default defineConfig({
         text: 'Examples',
         items: [
           { text: 'Protected Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Runtime API Examples', link: '/api-examples' },
+          { text: 'Non-Protected Examples', link: '/non-protected' }
         ]
       }
     ],
@@ -49,6 +51,7 @@ export default defineConfig({
       fs: {
         allow: ['..']
       }
-    }
+    },
+      
   }
 })

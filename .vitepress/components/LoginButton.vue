@@ -12,7 +12,6 @@
         <line x1="15" y1="12" x2="3" y2="12"></line>
       </svg>
     </span>
-    <span>Log In</span>
   </button>
 </template>
 
@@ -31,7 +30,7 @@ const handleLogin = () => {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1rem;
   font-size: 0.9rem;
   font-weight: 500;
   background-color: var(--vp-c-bg-soft);
