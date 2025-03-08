@@ -46,6 +46,7 @@ jobs:
         env:
           AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
           AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
+          AUTH0_REDIRECT_URI: ${{ secrets.AUTH0_REDIRECT_URI }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
