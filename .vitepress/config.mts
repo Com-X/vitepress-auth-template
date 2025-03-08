@@ -39,7 +39,8 @@ export default defineConfig({
   vite: {
     define: {
       'import.meta.env.AUTH0_DOMAIN': JSON.stringify(env.AUTH0_DOMAIN || ''),
-      'import.meta.env.AUTH0_CLIENT_ID': JSON.stringify(env.AUTH0_CLIENT_ID || '')
+      'import.meta.env.AUTH0_CLIENT_ID': JSON.stringify(env.AUTH0_CLIENT_ID || ''),
+      'import.meta.env.AUTH0_REDIRECT_URI': JSON.stringify(env.AUTH0_REDIRECT_URI || '')
     },
     optimizeDeps: {
       include: ['vue', '@auth0/auth0-spa-js']

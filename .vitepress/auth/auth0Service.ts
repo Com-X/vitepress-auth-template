@@ -5,6 +5,7 @@ import { ref, computed, readonly } from 'vue';
 // Environment variables (from .env files)
 const domain = import.meta.env.AUTH0_DOMAIN || '';
 const client_id = import.meta.env.AUTH0_CLIENT_ID || '';
+const redirect_uri = import.meta.env.AUTH0_REDIRECT_URI || '';
 
 // State
 const auth0 = ref<Auth0Client | null>(null);
@@ -20,7 +21,7 @@ export async function initAuth() {
         auth0.value = await createAuth0Client({
             domain,
             client_id,
-            redirect_uri: window.location.origin,
+            redirect_uri: redirect_uri,
             cacheLocation: 'localstorage'
         });
 
@@ -77,7 +78,7 @@ export async function logout() {
         if (!auth0.value) return;
 
         await auth0.value.logout({
-            returnTo: window.location.origin,
+            returnTo: redirect_uri,
         });
 
         // Clear user state
