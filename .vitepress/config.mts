@@ -5,6 +5,7 @@ const env = loadEnv('', process.cwd(), '')
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/vitepress-auth-template/',
   title: "Auth0 Vitepress Template",
   description: "Auth0 Vitepress Template",
   themeConfig: {
