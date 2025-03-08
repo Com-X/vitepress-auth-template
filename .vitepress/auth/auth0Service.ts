@@ -19,7 +19,7 @@ export async function initAuth() {
         // Create Auth0 client
         auth0.value = await createAuth0Client({
             domain,
-            client_id, 
+            client_id,
             redirect_uri: window.location.origin,
             cacheLocation: 'localstorage'
         });

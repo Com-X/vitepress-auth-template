@@ -3,48 +3,148 @@ outline: deep
 protected: true
 ---
 
-# Runtime API Examples
+# VitePress Runtime API Tutorial
 
-This page demonstrates usage of some of the runtime APIs provided by VitePress.
+This page provides a comprehensive tutorial on the core Runtime APIs available in VitePress. These APIs allow you to access site data, manage navigation, and enhance your documentation with dynamic features.
 
-The main `useData()` API can be used to access site, theme, and page data for the current page. It works in both `.md` and `.vue` files:
+<script setup lang="ts">
+// Import only the necessary APIs
+import { useData, useRoute, useRouter } from 'vitepress';
 
-```md
-<script setup>
-import { useData } from 'vitepress'
+// Only execute client-side code when in browser context
+const isBrowser = typeof window !== 'undefined';
 
-const { theme, page, frontmatter } = useData()
+// useData API
+const { site, theme, page, frontmatter } = useData();
+
+// useRoute API
+const route = useRoute();
+
+// useRouter API
+const router = useRouter();
 </script>
 
-## Results
+## The useData API
 
-### Theme Data
-<pre>{{ theme }}</pre>
+The core `useData()` API provides access to site, theme, page, and frontmatter data for the current page.
 
-### Page Data
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-<pre>{{ frontmatter }}</pre>
-```
-
+```vue
 <script setup>
 import { useData } from 'vitepress'
-
 const { site, theme, page, frontmatter } = useData()
 </script>
 
-## Results
+<template>
+  <!-- Use the data in your template -->
+  <p>Site title: {{ site.title }}</p>
+  <p>Current page: {{ page.relativePath }}</p>
+</template>
+```
 
-### Theme Data
-<pre>{{ theme }}</pre>
+### Live Example
 
-### Page Data
-<pre>{{ page }}</pre>
+<div class="api-example-box">
+  <h4>Site Data</h4>
+  <pre>{{ site }}</pre>
+  
+  <h4>Theme Data</h4>
+  <pre>{{ theme }}</pre>
+  
+  <h4>Page Data</h4>
+  <pre>{{ page }}</pre>
+  
+  <h4>Page Frontmatter</h4>
+  <pre>{{ frontmatter }}</pre>
+</div>
 
-### Page Frontmatter
-<pre>{{ frontmatter }}</pre>
+## Navigation Helpers
 
-## More
+VitePress provides several APIs for working with navigation.
 
-Check out the documentation for the [full list of runtime APIs](https://vitepress.dev/reference/runtime-api#usedata).
+### useRoute
+
+The `useRoute` API gives you access to the current route information.
+
+```vue
+<script setup>
+import { useRoute } from 'vitepress'
+const route = useRoute()
+</script>
+
+<template>
+  <p>Current path: {{ route.path }}</p>
+  <p>Route data: {{ route.data }}</p>
+</template>
+```
+
+#### Live Example
+
+<div class="api-example-box">
+  <p><strong>Current path:</strong> {{ route.path }}</p>
+  <div><strong>Route data:</strong></div>
+  <pre>{{ route.data }}</pre>
+</div>
+
+## Navigation Management
+
+### useRouter
+
+The `useRouter` API allows you to programmatically navigate between pages.
+
+```vue
+<script setup>
+import { useRouter } from 'vitepress'
+const router = useRouter()
+
+function navigate(path) {
+  router.go(path)
+}
+</script>
+
+<template>
+  <button @click="navigate('/')">Go Home</button>
+</template>
+```
+
+#### Live Example
+
+<div class="api-example-box">
+  <button class="custom-button" @click="router.go('/')">Go Home</button>
+  <button class="custom-button" @click="router.go('/markdown-examples')">Go to Markdown Examples</button>
+</div>
+
+<style>
+.api-example-box {
+  background-color: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  border: 1px solid var(--vp-c-divider);
+  overflow: auto;
+}
+
+.custom-button {
+  background-color: var(--vp-c-brand);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-right: 8px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+}
+
+.custom-button:hover {
+  background-color: var(--vp-c-brand-dark);
+}
+
+pre {
+  background-color: var(--vp-c-bg);
+  border-radius: 6px;
+  padding: 12px;
+  max-height: 200px;
+  overflow: auto;
+  font-size: 0.85em;
+}
+</style>

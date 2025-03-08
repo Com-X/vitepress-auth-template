@@ -26,7 +26,12 @@ export default defineConfig({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/Com-X/vitepress-auth-template' }
-    ]
+    ],
+
+    // Explicitly disable Algolia search
+    search: {
+      provider: 'local'
+    }
   },
 
   // Define environment variables to expose to the client
@@ -34,6 +39,14 @@ export default defineConfig({
     define: {
       'import.meta.env.AUTH0_DOMAIN': JSON.stringify(env.AUTH0_DOMAIN || ''),
       'import.meta.env.AUTH0_CLIENT_ID': JSON.stringify(env.AUTH0_CLIENT_ID || '')
+    },
+    optimizeDeps: {
+      include: ['vue', '@auth0/auth0-spa-js']
+    },
+    server: {
+      fs: {
+        allow: ['..']
+      }
     }
   }
 })

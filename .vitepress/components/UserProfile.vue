@@ -21,7 +21,7 @@ const userInitials = computed(() => {
   const name = userData.value.name || userData.value.email || '';
   return name
     .split(' ')
-    .map(part => part.charAt(0))
+    .map((part: string) => part.charAt(0))
     .join('')
     .toUpperCase()
     .substring(0, 2);

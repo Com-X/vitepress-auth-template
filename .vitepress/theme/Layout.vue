@@ -3,6 +3,7 @@
     <!-- Wrap the entire layout with the AuthGuard -->
     <AuthGuard>
       <DefaultTheme.Layout>
+        <!-- Create a nav container for our auth components -->
         <template #nav-bar-content-before>
           <div class="auth-nav-container">
             <LoginButton />
@@ -16,11 +17,20 @@
 </template>
 
 <script setup lang="ts">
+import { defineAsyncComponent } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import AuthGuard from '../components/AuthGuard.vue'
-import UserProfile from '../components/UserProfile.vue'
-import LoginButton from '../components/LoginButton.vue'
-import LogoutButton from '../components/LogoutButton.vue'
+
+// Use defineAsyncComponent to load components only when needed
+const UserProfile = defineAsyncComponent(() => 
+  import('../components/UserProfile.vue')
+)
+const LoginButton = defineAsyncComponent(() => 
+  import('../components/LoginButton.vue')
+)
+const LogoutButton = defineAsyncComponent(() => 
+  import('../components/LogoutButton.vue')
+)
 import { useData } from 'vitepress'
 
 const { frontmatter } = useData()

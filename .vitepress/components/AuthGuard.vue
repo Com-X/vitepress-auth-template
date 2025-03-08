@@ -29,8 +29,12 @@ const handleLogin = () => {
   login();
 };
 
+const isBrowser = typeof window !== 'undefined';
+
 onMounted(async () => {
-  await initAuth();
+  if (isBrowser) {
+    await initAuth();
+  }
 });
 </script>
 
