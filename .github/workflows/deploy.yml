@@ -1,26 +1,21 @@
-# GitHub Action for deploying VitePress to GitHub Pages
 name: Deploy VitePress to GitHub Pages
 
 on:
-  # Trigger the workflow on push to main branch
   push:
-    branches: [ main ]
+    branches: [ master ]
   # Allow manual triggering of the workflow
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
@@ -28,20 +23,20 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'pnpm'
           
       - name: Setup Pages
         uses: actions/configure-pages@v4
-
-      - name: Install pnpm
-        run: npm install -g pnpm
-      - name: Add pnpm to PATH
-        run: echo "/home/runner/.npm-global/bin" >> $GITHUB_PATH
 
       - name: Install dependencies
         run: pnpm install
@@ -49,7 +44,6 @@ jobs:
       - name: Build with VitePress
         run: pnpm run docs:build
         env:
-          # Make environment variables available during build
           AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
           AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
 
@@ -58,7 +52,6 @@ jobs:
         with:
           path: .vitepress/dist
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages
