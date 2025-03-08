@@ -33,16 +33,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'
+          cache: 'pnpm'
           
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Build with VitePress
-        run: npm run docs:build
+        run: pnpm run docs:build
         env:
           # Make environment variables available during build
           AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
