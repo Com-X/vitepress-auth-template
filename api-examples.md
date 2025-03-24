@@ -11,6 +11,8 @@ This page provides a comprehensive tutorial on the core Runtime APIs available i
 // Import only the necessary APIs
 import { useData, useRoute, useRouter } from 'vitepress';
 
+import { withBase } from 'vitepress';
+
 // Only execute client-side code when in browser context
 const isBrowser = typeof window !== 'undefined';
 
@@ -109,8 +111,8 @@ function navigate(path) {
 #### Live Example
 
 <div class="api-example-box">
-  <button class="custom-button" @click="router.go('/')">Go Home</button>
-  <button class="custom-button" @click="router.go('/markdown-examples')">Go to Markdown Examples</button>
+  <button class="custom-button" @click="router.go(withBase('/'))">Go Home</button>
+  <button class="custom-button" @click="router.go(withBase('/markdown-examples'))">Go to Markdown Examples</button>
 </div>
 
 <style>

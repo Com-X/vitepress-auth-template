@@ -7,27 +7,31 @@
     <div class="login-container">
       <h2>Authentication Required</h2>
       <p>This content is protected. Please log in to continue.</p>
-      <button class="login-button" @click="handleLogin">Log In</button>
+
+      <LoginForm buttonText="Log In" :showHelperText="currentProvider === 'basic'" />
     </div>
   </div>
   <slot v-else></slot>
 </template>
 
 <script setup lang="ts">
-import { useAuth } from '../auth/auth0Service';
+import { useAuthService } from '../auth/authService';
 import { useData } from 'vitepress';
 import { onMounted, computed } from 'vue';
+import LoginForm from './LoginForm.vue';
 
 const { frontmatter } = useData();
-const { initAuth, login, isAuthenticated, loading } = useAuth();
+const {
+  initAuth,
+  isAuthenticated,
+  loading,
+  currentProvider,
+  error: authError
+} = useAuthService();
 
 const requiresAuth = computed(() => {
   return frontmatter.value.protected === true;
 });
-
-const handleLogin = () => {
-  login();
-};
 
 const isBrowser = typeof window !== 'undefined';
 
@@ -59,8 +63,13 @@ onMounted(async () => {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .auth-login {
@@ -77,21 +86,5 @@ onMounted(async () => {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-}
-
-.login-button {
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--vp-c-brand);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.login-button:hover {
-  background-color: var(--vp-c-brand-dark);
 }
 </style>

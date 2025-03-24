@@ -8,16 +8,16 @@
 </template>
 
 <script setup lang="ts">
-import { useAuth } from '../auth/auth0Service';
+import { useAuthService } from '../auth/authService';
 import { computed } from 'vue';
 
-const { user, isAuthenticated } = useAuth();
+const { user, isAuthenticated } = useAuthService();
 
 const userData = computed(() => user.value);
 
 const userInitials = computed(() => {
   if (!userData.value) return '';
-  
+
   const name = userData.value.name || userData.value.email || '';
   return name
     .split(' ')

@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Auth0 Vitepress Template"
+  name: "Auth Vitepress Template"
   tagline: Authenticated Docs in 5 Minutes
   actions:
     - theme: brand
