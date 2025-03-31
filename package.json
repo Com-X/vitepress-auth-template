@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "1.20.0",
-    "vite": "6.2.1",
+    "vite": "6.2.4",
     "vitepress": "1.6.3",
     "vue": "3.5.13"
   },
